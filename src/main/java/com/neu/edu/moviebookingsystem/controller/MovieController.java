@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 
+import java.util.List;
+
 @RestController
 public class MovieController {
 
@@ -21,7 +23,9 @@ public class MovieController {
     }
 
     @GetMapping("/movie")
-    public String getMovie(){
-        return "Movie Page";
+    public List<Movie> getMovie(){
+        MovieService movieService = new MovieService();
+        return movieService.getData();
+
     }
 }

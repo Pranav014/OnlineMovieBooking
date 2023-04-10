@@ -14,7 +14,6 @@ abstract class Dao {
     private static final SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
     protected Dao() {
     }
-
     public static Session getSession() {
         Session session = (Session) Dao.sessionThread.get();
 

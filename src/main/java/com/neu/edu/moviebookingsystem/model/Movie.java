@@ -2,6 +2,7 @@ package com.neu.edu.moviebookingsystem.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import java.sql.Date;
 import java.sql.Time;
@@ -10,7 +11,7 @@ import java.sql.Time;
 @Table(name = "Movie")
 public class Movie {
     @javax.persistence.Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String movieName;
     private Date releaseDate;
@@ -19,6 +20,7 @@ public class Movie {
     private String leadActress;
     private String description;
     private Time runtime;
+
 
     public Movie() {
     }
