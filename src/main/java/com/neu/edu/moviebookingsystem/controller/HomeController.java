@@ -1,17 +1,19 @@
 package com.neu.edu.moviebookingsystem.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class HomeController {
 
-    @GetMapping("/admin/home")
-    public String home(){
-        return "Home Page";
+    @GetMapping("/home")
+    public ModelAndView home(){
+
+        return new ModelAndView("home.html");
     }
-    @GetMapping("/admin")
-    public String admin(){
-        return "Admin Page";
+    @GetMapping("/hello")
+    public ModelAndView hello(){
+        return new ModelAndView("hello.html");
     }
 }

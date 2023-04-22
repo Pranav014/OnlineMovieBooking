@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 abstract class Dao {
-    private static final Logger log = Logger.getAnonymousLogger();
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final ThreadLocal sessionThread = new ThreadLocal();
     private static final SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
     protected Dao() {
@@ -21,20 +21,26 @@ abstract class Dao {
             session = sessionFactory.openSession();
             Dao.sessionThread.set(session);
         }
+        logger.info("Session created");
         return session;
     }
 
     protected void begin() {
         getSession().beginTransaction();
+        logger.info("BEGIN SESSION");
     }
 
     protected void commit() {
         try{
             getSession().getTransaction().commit();
+            logger.info("COMMIT");
         }
         catch(Exception e){
             System.out.println(e.getMessage());
+            logger.info("EXCEPTION IN COMMIT");
+
         }
+
 
     }
 
@@ -42,12 +48,12 @@ abstract class Dao {
         try {
             getSession().getTransaction().rollback();
         } catch (HibernateException e) {
-            log.log(Level.WARNING, "Cannot rollback", e);
+            logger.log(Level.WARNING, "Cannot rollback", e);
         }
         try {
             getSession().close();
         } catch (HibernateException e) {
-            log.log(Level.WARNING, "Cannot close", e);
+            logger.log(Level.WARNING, "Cannot close", e);
         }
         Dao.sessionThread.set(null);
     }

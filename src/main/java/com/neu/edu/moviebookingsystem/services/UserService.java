@@ -1,27 +1,48 @@
 package com.neu.edu.moviebookingsystem.services;
 
-import com.neu.edu.moviebookingsystem.DAO.IDao;
 import com.neu.edu.moviebookingsystem.DAO.UserDao;
 import com.neu.edu.moviebookingsystem.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class UserService implements IService<User> {
-    @Override
+@Service
+@Configurable
+public class UserService {
+
+    private final UserDao userDao;
+
+    @Autowired
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+
     public boolean save(User user) {
-        IDao uDao = new UserDao();
-        uDao.create(user);
+//        IDao userDao = new userDao();
+        userDao.create(user);
         return false;
     }
 
-    @Override
     public boolean delete(Long id) {
-        return false;
+        return userDao.destroy(id);
+
     }
 
-    @Override
     public List<User> getData() {
-        IDao uDao = new UserDao();
-        return uDao.getAllData();
+        return userDao.getAllData();
     }
+
+    public User update(long id, User user) {
+        return (User) userDao.update(id, user);
+    }
+
+    public UserDetailsService findByUsername(String username) {
+        userDao.findByUsername(username);
+        return null;
+    }
+
 }
