@@ -4,10 +4,57 @@
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
   <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Welcome!</h1>
-<p>Click <a th:href = "@{/hello}">here</a> to see a greeting.</p>
+
+<!--THYMELEAF CODE -->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Ticket Booking System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1>Welcome to our Ticket Booking System</h1>
+  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor velit id congue bibendum. Nullam interdum metus ac justo commodo, vel lobortis urna blandit. Pellentesque auctor leo et turpis viverra, sed feugiat nulla interdum. Sed ac mauris quis turpis dignissim egestas. Integer in ante in tortor mollis finibus. Praesent rhoncus lobortis semper.</p>
+  <a href="/book" class="btn btn-primary">Book Tickets</a>
+</div>
+<br>
+<br>
+<table  class="table table-striped">
+  <tr th:each="message : ${messages}">
+    <td th:text="${message.id}">1</td>
+    <td><a href="#" th:text="${message.movieName}">Title ...</a></td>
+    <td th:text="${message.leadActor}">Text ...</td>
+  </tr>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!---------------------------------->
+
+
+
+
 </body>
 </html>

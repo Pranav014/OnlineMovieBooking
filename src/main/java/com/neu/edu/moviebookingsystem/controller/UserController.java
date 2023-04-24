@@ -24,14 +24,16 @@ public class UserController {
     @PostMapping("/users/add")
     public String addUser(@RequestBody User user, BindingResult bindingResult, SessionStatus sessionStatus){
 //        IService userService = new UserService();
-        userService.save(user);
+        boolean res = userService.save(user);
+        if (!res){
+            return "USER NOT SAVED";
+        }
         sessionStatus.setComplete();
         return "User Saved";
     }
 
     @GetMapping("/users/getAll")
     public List<User> getUser(){
-//        IService userService = new UserService();
         return userService.getData();
 
     }

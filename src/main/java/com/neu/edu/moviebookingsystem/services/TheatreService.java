@@ -1,6 +1,6 @@
 package com.neu.edu.moviebookingsystem.services;
 
-import com.neu.edu.moviebookingsystem.model.Theatre;
+import com.neu.edu.moviebookingsystem.Entities.Theatre;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +12,7 @@ public class TheatreService implements IService<Theatre>{
 
     @Override
     public boolean save(Theatre theatre) {
+
         return false;
     }
 
@@ -27,6 +28,11 @@ public class TheatreService implements IService<Theatre>{
 
     @Override
     public Theatre update(long id, Theatre theatre) {
+        return null;
+    }
+
+    @Override
+    public Theatre find(long id) {
         return null;
     }
 }

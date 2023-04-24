@@ -6,6 +6,6 @@ public enum Role {
 
     @JsonProperty("user")
     USER,
-    @JsonProperty("role")
-    ADMIN
+    @JsonProperty("admin")
+    ADMIN;
 }

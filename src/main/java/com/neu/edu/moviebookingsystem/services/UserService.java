@@ -4,7 +4,6 @@ import com.neu.edu.moviebookingsystem.DAO.UserDao;
 import com.neu.edu.moviebookingsystem.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +22,12 @@ public class UserService {
 
     public boolean save(User user) {
 //        IDao userDao = new userDao();
+        User user1 = userDao.findByUsername(user.getUsername());
+        if (user1 != null){
+            return false;
+        }
         userDao.create(user);
-        return false;
+        return true;
     }
 
     public boolean delete(Long id) {
@@ -40,9 +43,9 @@ public class UserService {
         return (User) userDao.update(id, user);
     }
 
-    public UserDetailsService findByUsername(String username) {
-        userDao.findByUsername(username);
-        return null;
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
+
     }
 
 }

@@ -1,7 +1,7 @@
 package com.neu.edu.moviebookingsystem.services;
 
 import com.neu.edu.moviebookingsystem.DAO.MovieDao;
-import com.neu.edu.moviebookingsystem.model.Movie;
+import com.neu.edu.moviebookingsystem.Entities.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
@@ -12,12 +12,20 @@ import java.util.List;
 @Configurable
 public class MovieService implements IService<Movie> {
 
+    private final MovieDao movieDao;
+
     @Autowired
-    private MovieDao movieDao;
+    public MovieService(MovieDao movieDao) {
+        this.movieDao = movieDao;
+    }
 
     @Override
     public boolean save(Movie movie) {
 //        MovieDao mDao = new MovieDao();
+        Movie m = findByName(movie.getMovieName());
+        if (m != null){
+            return false;
+        }
         movieDao.create(movie);
         return false;
     }
@@ -43,6 +51,10 @@ public class MovieService implements IService<Movie> {
     @Override
     public Movie find(long id){
         return movieDao.find(id);
+    }
+
+    public Movie findByName(String name){
+        return movieDao.findByName(name);
     }
 
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You for Booking</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles here */
+        .thankyou-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .ticket-details {
+            margin-bottom: 2rem;
+        }
+
+        .ticket-details .row {
+            margin-bottom: 1rem;
+        }
+
+        .ticket-details .label {
+            font-weight: bold;
+        }
+
+        .btn-home {
+            font-size: 1.2rem;
+            padding: 0.75rem 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="thankyou-wrapper">
+    <h1>Thank You for Booking</h1>
+    <div class="ticket-details">
+        <h2>Ticket Details:</h2>
+        <div class="row">
+            <span class="col-4 label">Movie Name:</span>
+            <span class="col-8" th:text="${ticket.movieName}"></span>
+        </div>
+<!--        <div class="row">-->
+<!--            <span class="col-4 label">Theatre Name:</span>-->
+<!--            <span class="col-8" th:text="${ticket.}"></span>-->
+<!--        </div>-->
+        <div class="row">
+            <span class="col-4 label">Show Date:</span>
+            <span class="col-8" th:text="${ticket.dateOfMovie}"></span>
+        </div>
+        <div class="row">
+            <span class="col-4 label">Show Time:</span>
+            <span class="col-8" th:text="${ticket.movieTime}"></span>
+        </div>
+        <div class="row">
+            <span class="col-4 label">Seat Number:</span>
+            <span class="col-8" th:text="${ticket.seats}"></span>
+        </div>
+        <div class="row">
+            <span class="col-4 label">Price:</span>
+            <span class="col-8" th:text="${ticket.price}"></span>
+        </div>
+    </div>
+    <a href="/home" class="btn btn-primary btn-home">Return to Home</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

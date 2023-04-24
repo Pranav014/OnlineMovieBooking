@@ -1,6 +1,6 @@
 package com.neu.edu.moviebookingsystem.controller;
 
-import com.neu.edu.moviebookingsystem.model.Movie;
+import com.neu.edu.moviebookingsystem.Entities.Movie;
 import com.neu.edu.moviebookingsystem.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -20,9 +20,10 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @PostMapping("/movie/add")
+    @PostMapping("/movies/add")
     public String addMovie(@RequestBody Movie movie, BindingResult bindingResult, SessionStatus sessionStatus){
-        MovieService movieService = new MovieService();
+        System.out.println(movie.getTheatreoutdate());
+        System.out.println(movie.getRuntime());
         movieService.save(movie);
         sessionStatus.setComplete();
         return "Movie Saved";
@@ -30,7 +31,6 @@ public class MovieController {
 
     @GetMapping("/movie")
     public List<Movie> getMovie(){
-        MovieService movieService = new MovieService();
         return movieService.getData();
     }
 

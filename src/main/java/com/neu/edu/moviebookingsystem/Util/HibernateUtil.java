@@ -1,9 +1,6 @@
 package com.neu.edu.moviebookingsystem.Util;
 
-import com.neu.edu.moviebookingsystem.model.Movie;
-import com.neu.edu.moviebookingsystem.model.Shows;
-import com.neu.edu.moviebookingsystem.model.Theatre;
-import com.neu.edu.moviebookingsystem.model.User;
+import com.neu.edu.moviebookingsystem.Entities.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -31,7 +28,7 @@ public class HibernateUtil {
             return (SessionFactory) new Configuration()
                     .setProperties(properties)
                     .addAnnotatedClass(Movie.class).addAnnotatedClass(User.class).addAnnotatedClass(Shows.class)
-                    .addAnnotatedClass(Theatre.class)//.addAnnotatedClass(PlayList.class).addAnnotatedClass(Song.class).addAnnotatedClass(Album.class).addAnnotatedClass(Admin.class)
+                    .addAnnotatedClass(Theatre.class).addAnnotatedClass(Screens.class).addAnnotatedClass(Ticket.class)//.addAnnotatedClass(PlayList.class).addAnnotatedClass(Song.class).addAnnotatedClass(Album.class).addAnnotatedClass(Admin.class)
                     .buildSessionFactory();
 
         } catch (Throwable ex) {

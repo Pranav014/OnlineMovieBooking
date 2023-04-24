@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Dream World Cinemas</title>
+    <link href="themes/default/dream.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="validate.js"></script>
+    <script type="text/JavaScript" src="ajax.js"></script>
+    <script type="text/JavaScript" src="navigation.js"></script>
+    <script type="text/JavaScript" src="process.js"></script>
+    <script type="text/JavaScript" src="swfobject.js"></script>
+    <script type="text/javascript">
+        var title="Dream world Cinemas";
+    </script>
+</head>
+<body>
+<script>setInterval('autorefreshmsg()',10000);setInterval('showTime()',1000);setInterval('handleNavigation()',300);</script>
+<img src="media/icon.png" alt="Dream World Cinemas" border="0" style="position:absolute; left: 35%;top:0px; "/>
+<table width="100%">
+    <tr>
+        <td><img src="media/header.jpg" width="100%" height="100"/></td>
+    </tr>
+    <tr><td id="messagebar">
+        <table width=100%><tr>
+            <td width="200px" align ="left" id="messageleft"></td>
+            <td width="250px"  align="center" id="messagecenter"></td>
+            <td id="messageright" align="left" ></td>
+        </tr></table>
+    </td></tr>
+    <tr><td>
+        <table><tr><td  valign="top">
+            <table id="navigation"  width="170px">
+                <tr><td><a href="#login" onclick="navtologin()">Log in</a></td></tr>
+                <tr><td><a href="#register" onclick="navtoregister()">Register</a></td></tr>
+                <tr><td><a href="#schedule" onclick="navtoschedule()">Schedules</a></td></tr>
+                <tr><td><a href="#aboutus" onclick="navtoaboutus()">About us</a></td></tr>
+                <tr><td><a href="#contactus" onclick="navtocontactus()">Contact us</a></td></tr>
+                <tr><td><a href="#movies" onclick="navtomovies()">Movies</a></td></tr>
+                <tr><td><a href="#" onclick="logout()">Log Out</a></td></tr>
+            </table>
+        </td>
+            <td width=20px></td>
+            <td id="databar">
+                <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="608" height="450">
+                    <param name="movie" value="media/dreamworld.swf"/>
+                    <param name="quality" value="low"/>
+                    <embed src="media/dreamworld.swf" width="608" height="450" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" />
+                </object>
+            </td></tr>
+        </table></td></tr>
+</table>
+<table id="footer" width="100%" >
+    <tr>
+        <td>
+            <a href="#" onclick="navtohome()">Home</a> &nbsp;|
+            <a href="#schedule" onclick="navtoschedule()">Schedule</a> &nbsp;|
+            <a href="#privacy" onclick="navtoprivacy()">Privacy Policy</a>&nbsp;|
+            <a href="#contactus" onclick="navtocontactus()">Contact us</a> &nbsp;|
+            <a href="#disclaimer" onclick="navtodisclaimer()">Disclaimer</a> &nbsp;|
+            <a href="#aboutus" onclick="navtoaboutus()">About us</a>&nbsp;
+        </td>
+    </tr>
+</table>
+<a name="#schedule"></a><a name="#login"></a><a name="#register"></a>
+</body>
+</html>

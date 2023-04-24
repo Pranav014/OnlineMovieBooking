@@ -1,6 +1,6 @@
 package com.neu.edu.moviebookingsystem.DAO;
 
-import com.neu.edu.moviebookingsystem.model.Movie;
+import com.neu.edu.moviebookingsystem.Entities.Movie;
 
 import java.util.List;
 

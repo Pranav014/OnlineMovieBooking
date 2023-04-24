@@ -2,9 +2,11 @@ package com.neu.edu.moviebookingsystem.DAO;
 
 import com.neu.edu.moviebookingsystem.Util.HibernateUtil;
 import com.neu.edu.moviebookingsystem.model.User;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,13 +24,13 @@ public class UserDao {
     private static final ThreadLocal sessionThread = new ThreadLocal();
     private static final SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
 
-    final
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserDao(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+//    final
+//    PasswordEncoder passwordEncoder;
+//
+//    @Autowired
+//    public UserDao(PasswordEncoder passwordEncoder) {
+//        this.passwordEncoder = passwordEncoder;
+//    }
 
     public static Session getSession() {
         Session session = (Session) UserDao.sessionThread.get();
@@ -85,7 +87,7 @@ public class UserDao {
             //save user object in the database
             System.out.println("UserDao");
             begin();
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+//            user.setPassword(passwordEncoder.encode(user.getPassword()));
             getSession().persist(user);  // save(user); // .save(user);
             commit();
             close();
@@ -156,12 +158,13 @@ public class UserDao {
     }
 
 
-    public UserDetailsService findByUsername(String username){
+    public User findByUsername(String username){
         try{
-            begin();
-            User user = getSession().createQuery("from User where username = " + username, User.class).uniqueResult();
-            commit();
-            return (UserDetailsService) user;
+//            begin();
+            User user = (User) getSession().createQuery("from User where username = :username", User.class).setParameter("username", username).uniqueResult();
+            System.out.println(user.getUsername() + " USERNAME AFTER FINDING ");
+//            close();
+            return user;
 
 
         }
@@ -173,20 +176,7 @@ public class UserDao {
     }
 
 
-    public boolean find(Long id) {
-        try{
-            begin();
-            User user = getSession().get(User.class, id);
-            if (user != null){
-                return true;
-            }
-            return false;
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
+
 
 
 }
