@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Movie - Admin Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</head>
+<style>
+    input[type=time] {
+        font-size: 16px;
+        color: #333;
+    }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Admin Dashboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Users</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="text-center">Add Movie</h1>
+  <hr>
+
+  <form onsubmit="event.preventDefault();" >
+<!--    th:action="@{/admin/movies/new}"-->
+
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre:</label>
+      <input type="text" class="form-control" id="genre" name="genre" required>
+    </div>
+
+    <div class="form-group">
+      <label for="duration">Duration:</label>
+      <input type="number" class="form-control" id="duration" name="duration" required>
+    </div>
+      <div class="form-group">
+          <label for="leadActor">Title:</label>
+          <input type="text" class="form-control" id="leadActor" name="title" required>
+      </div>
+      <div class="form-group">
+          <label for="leadActress">Title:</label>
+          <input type="text" class="form-control" id="leadActress" name="title" required>
+      </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+    </div>
+
+      <label for="releaseDate">Choose a date:</label>
+      <input type="date" id="releaseDate" name="date" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+
+      <label for="runtime">Runtime:</label>
+      <input type="time" name="runtime" id="runtime" step="1" pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}" />
+
+      <label for="outDate">Out of theatre date: </label>
+      <input type="date" id="outDate" name="date" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+
+
+
+    <button type="submit" onclick="handleSubmit()" class="btn btn-primary">Submit</button>
+    <a th:href="@{/admin/movies}" class="btn btn-secondary">Cancel</a>
+
+  </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script>
+  function handleSubmit() {
+
+    // Create a JSON object
+      var title = document.getElementById("title").value;
+      var description = document.getElementById("description").value;
+      var leadActor = document.getElementById("leadActor").value;
+      var releaseDate = document.getElementById("releaseDate").value;
+      var outDate = document.getElementById("outDate").value;
+      var leadActress = document.getElementById("leadActress").value;
+      var runtime = document.getElementById("runtime").value;
+
+
+      // Create a JSON object
+      var movie = {
+          movieName: title,
+          description: description,
+          leadActor: leadActor,
+          leadActress: leadActress,
+          releaseDate: releaseDate,
+          theatreoutdate: outDate,
+          runtime : runtime,
+      };
+
+
+      // Send the AJAX request
+    $.ajax({
+      url: "/movies/add",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(movie),
+      success: function(response) {
+        console.log(response);
+        alert("Movie Saved");
+
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+        alert("Error saving movie");
+      }
+    });
+  }
+
+</script>
+</body>
+</html>
