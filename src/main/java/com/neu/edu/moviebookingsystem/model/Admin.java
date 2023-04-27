@@ -2,7 +2,7 @@ package com.neu.edu.moviebookingsystem.model;
 
 import com.neu.edu.moviebookingsystem.Entities.Movie;
 
-public class Admin extends User{
+public class Admin {
     public boolean addMovie(Movie movie){
         //TODO Adds movie to database using MovieService
         return  false;
@@ -13,7 +13,7 @@ public class Admin extends User{
         return false;
     }
 
-    public boolean blockUser(User user){
-        return false;
-    }
+//    public boolean blockUser(User user){
+//        return false;
+//    }
 }

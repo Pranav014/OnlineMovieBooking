@@ -2,7 +2,7 @@ package com.neu.edu.moviebookingsystem.DAO;
 
 import com.neu.edu.moviebookingsystem.Util.HibernateUtil;
 import com.neu.edu.moviebookingsystem.Entities.Movie;
-import com.neu.edu.moviebookingsystem.model.User;
+import com.neu.edu.moviebookingsystem.Entities.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

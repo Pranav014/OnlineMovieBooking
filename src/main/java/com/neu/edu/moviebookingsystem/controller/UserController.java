@@ -1,6 +1,6 @@
 package com.neu.edu.moviebookingsystem.controller;
 
-import com.neu.edu.moviebookingsystem.model.User;
+import com.neu.edu.moviebookingsystem.Entities.User;
 import com.neu.edu.moviebookingsystem.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

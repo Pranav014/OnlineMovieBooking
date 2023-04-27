@@ -46,8 +46,25 @@ public class MovieController {
     }
 
     @PutMapping("/movies/put/{id}")
-    public String updateMovie(@RequestBody Movie movie, @PathVariable long id){
-        movieService.update(id, movie);
-        return "Updated";
+    public ResponseEntity<String> updateMovie(@RequestBody String json, @PathVariable long id, SessionStatus sessionStatus){
+        try {
+            Movie movie = objectMapper.readValue(json, Movie.class);
+            // Do something with the movie object
+            movieService.update(id, movie);
+            sessionStatus.setComplete();
+            return ResponseEntity.ok("Movie Updated successfully");
+        } catch (JsonProcessingException e) {
+            return ResponseEntity.badRequest().body("Invalid JSON format" + e.getMessage());
+        }
+
+    }
+
+    @PostMapping("/movies/delete/{id}")
+    public ResponseEntity<String> deleteMovie(@PathVariable long id, SessionStatus sessionStatus){
+        // Do something with the movie object
+        movieService.delete(id);
+        sessionStatus.setComplete();
+        return ResponseEntity.ok("Movie deleted successfully");
+
     }
 }

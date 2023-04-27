@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -39,8 +41,9 @@ public class BookController {
     }
 
     @GetMapping("/book")
-    public ModelAndView bookForm(){
+    public ModelAndView bookForm(HttpServletRequest request, HttpServletResponse response){
         ModelAndView mav = new ModelAndView("book.html");
+        request.getSession();
         // Date and movie should come from show
 
         mav.addObject("shows", showService.getShows());

@@ -4,7 +4,7 @@ import com.neu.edu.moviebookingsystem.Entities.Ticket;
 
 import java.util.List;
 
-public class Customer extends User{
+public class Customer {
     public boolean makeBooking(){
         //TODO book tickets by calling service method to book tickets
         return false;

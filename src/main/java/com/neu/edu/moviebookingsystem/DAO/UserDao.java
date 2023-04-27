@@ -1,7 +1,7 @@
 package com.neu.edu.moviebookingsystem.DAO;
 
 import com.neu.edu.moviebookingsystem.Util.HibernateUtil;
-import com.neu.edu.moviebookingsystem.model.User;
+import com.neu.edu.moviebookingsystem.Entities.User;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -19,68 +19,7 @@ import java.util.logging.Logger;
 
 @Component
 @Configurable
-public class UserDao {
-    private static final Logger logger = Logger.getAnonymousLogger();
-    private static final ThreadLocal sessionThread = new ThreadLocal();
-    private static final SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
-
-//    final
-//    PasswordEncoder passwordEncoder;
-//
-//    @Autowired
-//    public UserDao(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
-
-    public static Session getSession() {
-        Session session = (Session) UserDao.sessionThread.get();
-
-        if (session == null) {
-            session = sessionFactory.openSession();
-            UserDao.sessionThread.set(session);
-        }
-        logger.info("Session created");
-        return session;
-    }
-
-    public static void begin() {
-        getSession().beginTransaction();
-        logger.info("BEGIN SESSION");
-    }
-
-    public static void commit() {
-        try{
-            getSession().getTransaction().commit();
-            logger.info("COMMIT");
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            logger.info("EXCEPTION IN COMMIT");
-
-        }
-
-
-    }
-
-    public static void rollback() {
-        try {
-            getSession().getTransaction().rollback();
-        } catch (HibernateException e) {
-            logger.log(Level.WARNING, "Cannot rollback", e);
-        }
-        try {
-            getSession().close();
-        } catch (HibernateException e) {
-            logger.log(Level.WARNING, "Cannot close", e);
-        }
-        UserDao.sessionThread.set(null);
-    }
-
-    public static void close() {
-        getSession().close();
-        UserDao.sessionThread.set(null);
-    }
-
+public class UserDao extends Dao {
 
     public boolean create(User user) {
         try {
@@ -107,7 +46,7 @@ public class UserDao {
             User user = getSession().get(User.class, id);
             if (user != null){
                 getSession().delete(user);
-                System.out.println("User " + user.getUserID() + " Deleted");
+                System.out.println("User " + user.getId() + " Deleted");
             }
             commit();
             return true;

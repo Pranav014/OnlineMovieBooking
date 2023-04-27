@@ -1,21 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>User Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-<form action="/register" method="post">
-  <label for="username">Username</label>
-  <input type="text" name="username" id="username">
-  <label for="FirstName">First Name</label>
-  <input type="text" id="FirstName">
-  <label for="LastName">Last Name</label>
-  <input type="text" id="LastName">
-  <label for="Password">Password</label>
-  <input id="password" type="password">
-  <input type="submit">
-</form>
+<h1>User Registration</h1>
 
+<form action="/register" method="post">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+<!--  th:field="*{user.username}"-->
+
+
+  <label for="firstName">First Name:</label>
+  <input type="text" id="firstName" name="firstName"  required>
+<!--  th:field="*{user.firstName}"-->
+
+  <label for="lastName">Last Name:</label>
+  <input type="text" id="lastName" name="lastName" required>
+<!--  th:field="*{lastName}"-->
+
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+<!--  th:field="*{password}"-->
+
+<!--  <label for="confirmPassword">Confirm Password:</label>-->
+<!--  <input type="password" id="confirmPassword" th:field="*{confirmPassword}" required>-->
+
+  <input type="submit" value="Register">
+</form>
 </body>
 </html>

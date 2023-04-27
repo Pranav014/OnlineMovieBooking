@@ -1,7 +1,7 @@
 package com.neu.edu.moviebookingsystem.services;
 
 import com.neu.edu.moviebookingsystem.DAO.UserDao;
-import com.neu.edu.moviebookingsystem.model.User;
+import com.neu.edu.moviebookingsystem.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;

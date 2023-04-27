@@ -1,28 +1,50 @@
 package com.neu.edu.moviebookingsystem.controller;
 
-import com.neu.edu.moviebookingsystem.model.User;
+import com.neu.edu.moviebookingsystem.Entities.User;
+import com.neu.edu.moviebookingsystem.services.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-    @GetMapping("/login")
-    public ModelAndView getForm(){
-//        HttpSession httpSession =
-        System.out.println("IN LOGIN FORM");
-        return new ModelAndView("login.html");
-    }
-    @GetMapping("/registerForm")
-    public ModelAndView registerForm(){
-        return new ModelAndView("signup.html");
-    }
-    @PostMapping("/register")
-    public ModelAndView registerUser(@RequestBody User user){
-        return new ModelAndView("success.html");
+    final private UserService userService;
+
+    public LoginController(UserService userService) {
+        this.userService = userService;
     }
 
+    @GetMapping("/login")
+    public ModelAndView getForm(Model model){
+//        HttpSession httpSession =
+        System.out.println("IN LOGIN FORM");
+//        ModelAndView mav = new ModelAndView();
+        User user = new User();
+        model.addAttribute("user");
+        return new ModelAndView("login.html", "user",user);
+    }
+    @GetMapping("/register")
+    public ModelAndView registerForm(){
+        return new ModelAndView("signup.html");
+//        return new ModelAndView("adminDashboard.html");
+    }
+    @PostMapping("/register")
+    public ModelAndView registerUser(@RequestParam("username") String username, @RequestParam("firstName") String firstName,
+                                     @RequestParam("lastName") String lastName, @RequestParam("password") String password){
+
+        System.out.println("IN REGISTER POST");
+
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setUsername(username);
+        user.setLastName(lastName);
+        user.setPassword(password);
+        user.setRoles("ROLE_USER");
+        userService.save(user);
+        return new ModelAndView("successRegister.html","username", user.getUsername());
+    }
 
 }

@@ -26,13 +26,16 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
-                authorizationManagerRequestMatcherRegistry.antMatchers("/home").hasAnyRole("ADMIN", "USER");
-                authorizationManagerRequestMatcherRegistry.antMatchers("/book").hasAnyRole("ADMIN","USER");
-                authorizationManagerRequestMatcherRegistry.antMatchers("/movies/add").permitAll();
-                authorizationManagerRequestMatcherRegistry.antMatchers("/screens/*").permitAll();
+                authorizationManagerRequestMatcherRegistry.antMatchers("/home").permitAll();// hasAnyRole("ADMIN", "USER");
+                authorizationManagerRequestMatcherRegistry.antMatchers("/book").hasAnyRole("USER");
+                authorizationManagerRequestMatcherRegistry.antMatchers("/admin/*/*","/admin/*").hasAnyRole("ADMIN");
+                authorizationManagerRequestMatcherRegistry.antMatchers("/screens/*").hasAnyRole("USER");
+                authorizationManagerRequestMatcherRegistry.antMatchers("/register").permitAll();
+
+
 
         }).csrf().disable();
-        httpSecurity.formLogin();
+        httpSecurity.formLogin().loginPage("/login");
 
         httpSecurity.logout(httpSecurityLogoutConfigurer -> {
             httpSecurityLogoutConfigurer.logoutSuccessUrl("/login?signout=true");
@@ -50,7 +53,6 @@ public class SecurityConfig {
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "SELECT username, password, active FROM user WHERE username=?"
         );
-
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
                 "SELECT u.username, u.roles\n"
                         + "FROM user u\n"
