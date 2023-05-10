@@ -1,6 +1,14 @@
 # Online Movie Booking System
 
-This is a repository for an Online Movie Booking System implemented using Spring Boot, Hibernate, SQL, and utilizing DAO patterns.
+This is a repository for an Online Movie Booking System implemented using Spring Boot, Spring Security, Hibernate, SQL, and utilizing DAO patterns.
+
+An online movie ticket booking system is a platform that allows users to reserve and purchase movie tickets over the internet. This system has become increasingly popular in recent years as more people have access to the internet and mobile devices. It provides a convenient and efficient way to buy movie tickets, allowing users to choose their seats and avoid waiting in long queues at the cinema.
+With an online movie ticket booking system, users can browse available movies, showtimes, and theatres in their area. They can select their preferred movie, date, and time. The system will then provide the user with a confirmation of their booking.
+In addition to its convenience, an online movie ticket booking system offers a range of benefits for both moviegoers and theatre owners. For moviegoers, it provides a hassle-free and time-saving experience, while for theatre owners, it enables them to manage their ticket sales more efficiently and reduce the risk of overbooking or under booking.
+Type of Users involved would be:
+- Customer – uses application to book tickets
+- Admin – Uses application to add, update and remove a movie and/or theatre.
+
 
 ## Requirements
 
