@@ -47,6 +47,7 @@ The following endpoints are available:
 - DELETE `/user/delete/{id}` - Deletes specific user
 - PUT `/users/put/{id}` - Updates Specific User
 
-License
-MIT
+## License
+
+[MIT](https://github.com/Pranav014/OnlineMovieBooking/blob/main/LICENSE.txt)
 
