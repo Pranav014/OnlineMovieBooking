@@ -47,5 +47,6 @@ The following endpoints are available:
 - DELETE `/user/delete/{id}` - Deletes specific user
 - PUT `/users/put/{id}` - Updates Specific User
 
-## License
+License
+MIT
 
