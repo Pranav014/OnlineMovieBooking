@@ -14,6 +14,7 @@ Type of Users involved would be:
 
 - Java 8 or higher
 - Apache Maven 3.6.0 or higher
+- Spring Boot 2.7.10 or higher
 - MySQL 8.0.26 or higher
 
 ## Setup
