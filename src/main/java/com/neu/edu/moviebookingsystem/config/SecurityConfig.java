@@ -17,11 +17,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return  new BCryptPasswordEncoder();
     }
-
     @Bean
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
@@ -31,9 +31,6 @@ public class SecurityConfig {
                 authorizationManagerRequestMatcherRegistry.antMatchers("/admin/*/*","/admin/*").hasAnyRole("ADMIN");
                 authorizationManagerRequestMatcherRegistry.antMatchers("/screens/*").hasAnyRole("USER");
                 authorizationManagerRequestMatcherRegistry.antMatchers("/register").permitAll();
-
-
-
         }).csrf().disable();
         httpSecurity.formLogin().loginPage("/login");
 

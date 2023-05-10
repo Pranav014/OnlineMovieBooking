@@ -2,6 +2,7 @@ package com.neu.edu.moviebookingsystem.controller;
 
 import com.neu.edu.moviebookingsystem.Entities.User;
 import com.neu.edu.moviebookingsystem.services.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
     final private UserService userService;
 
-    public LoginController(UserService userService) {
+    final private PasswordEncoder passwordEncoder;
+
+    public LoginController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
@@ -41,7 +45,8 @@ public class LoginController {
         user.setFirstName(firstName);
         user.setUsername(username);
         user.setLastName(lastName);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setActive((byte) 1);
         user.setRoles("ROLE_USER");
         userService.save(user);
         return new ModelAndView("successRegister.html","username", user.getUsername());
