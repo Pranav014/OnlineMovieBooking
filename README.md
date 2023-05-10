@@ -1,16 +1,51 @@
-# OnlineMovieBooking
-Movie booking
-### Here are the main classes of the Movie Ticket Booking System:
+# Online Movie Booking System
 
-1. **Account**: Admin will be able to add/remove movies and shows, as well as block/unblock accounts. Customers can search for movies and make bookings for shows. FrontDeskOffice can book tickets for movie shows.
-2. **Guest**: Guests can search and view movies descriptions. To make a booking for a show they have to become a registered member.
-3. **Cinema**: The main part of the organization for which this software has been designed. It has attributes like ‘name’ to distinguish it from other cinemas.
-4. **CinemaHall**: Each cinema will have multiple halls containing multiple seats.
-5. **City**: Each city can have multiple cinemas.
-6. **Movie**: The main entity of the system. Movies have attributes like title, description, language, genre, release date, city name, etc.
-7. **Show**: Each movie can have many shows; each show will be played in a cinema hall.
-8. **CinemaHallSeat**: Each cinema hall will have many seats.
-9. **ShowSeat**: Each ShowSeat will correspond to a movie Show and a CinemaHallSeat. Customers will make a booking against a ShowSeat.
-10. **Booking**: A booking is against a movie show and has attributes like a unique booking number, number of seats, and status.
-11. **Payment**: Responsible for collecting payments from customers.
-12. **Notification**: Will take care of sending notifications to customers.
+This is a repository for an Online Movie Booking System implemented using Spring Boot, Hibernate, SQL, and utilizing DAO patterns.
+
+## Requirements
+
+- Java 8 or higher
+- Apache Maven 3.6.0 or higher
+- MySQL 8.0.26 or higher
+
+## Setup
+
+1. Clone the repository to your local machine.
+2. Import the project into your preferred IDE.
+3. Create a MySQL database named `bookingsystem`.
+4. In the `application.properties` file, update the `spring.datasource.username` and `spring.datasource.password` fields with your MySQL credentials.
+5. Run the following command to build the project:
+   ```
+   mvn clean install
+   ```
+6. Run the following command to start the application:
+   ```
+   mvn spring-boot:run
+   ```
+
+## Endpoints
+
+The following endpoints are available:
+
+- GET `/movie` - Retrieve a list of all movies.
+- POST `/movies/add` - Create a new movie.
+- PUT `/movies/put/{id}` - Update a movie.
+- DELETE `/movies/delete/{id}` - Delete a movie.
+- GET `/book` - Retrieve a list of all bookings.
+- GET `/bookings/{id}` - Retrieve a specific booking by ID.
+- POST `/book` - Create a new booking and generate Ticket.
+- PUT `/bookings/{id}` - Update a booking.
+- DELETE `/bookings/{id}` - Delete a booking.
+- GET `/home` - Displays home page
+- GET `/profile` - Displays Profile page with logged in users details
+- GET `/admin/dashboard` - Displays a page where admin can perform CRUD operations on MOvie Database
+- GET `/login` - Displays a page to enter credentials to Login to site
+- POST `/register` - Checks credential and logins the user
+- GET `/register` -  Gives  page to signup to website
+- POST `/users/add` - Adds a user
+- GET `/users/getAll` - retrieves all Users
+- DELETE `/user/delete/{id}` - Deletes specific user
+- PUT `/users/put/{id}` - Updates Specific User
+
+## License
+
